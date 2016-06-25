@@ -213,15 +213,15 @@ def deploy_to_server(sync_with_setting="False", debug="False"):
     if debug.lower() == "true":
         # Run the uWSGI Server
         with cd(data.get("uwsgi_file_path")):
-            run("uwsgi --ini %s" % data.get("uwsgi_file"))
+            function("uwsgi --ini %s" % data.get("uwsgi_file"))
     elif debug.lower() == "false":
         if exists("/etc/uwsgi/vassals/%s" % data.get("uwsgi_file")):
-            run("rm /etc/uwsgi/vassals/%s" % data.get("uwsgi_file"))
+            function("rm /etc/uwsgi/vassals/%s" % data.get("uwsgi_file"))
 
-        run("ln -s %s/%s /etc/uwsgi/vassals/" % (
+        function("ln -s %s/%s /etc/uwsgi/vassals/" % (
             data.get("uwsgi_file_path"), data.get("uwsgi_file")))
 
-        run("touch /etc/uwsgi/vassals/%s" % data.get("uwsgi_file"))
+        function("touch /etc/uwsgi/vassals/%s" % data.get("uwsgi_file"))
     else:
         pass
     print("\nSucessfully deployed to the Server")
