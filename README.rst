@@ -6,7 +6,7 @@ Setup:
 
 * First, create an YAML file similar to `sample_config.yaml`_ and fill the configuration details.
 
-.. _`sample_config.yaml`: http://git.micropyramid.com/mp/django-spanner/blob/master/sample_config.yaml
+.. _`sample_config.yaml`: http://git.micropyramid.com/mp/django-spanner/blob/master/django_spanner/sample_config.yaml
 
 * Next, create a :code:`fabfile.py` in your project directory and import all functions(fab commands/tasks) from `django_spanner`.
 
