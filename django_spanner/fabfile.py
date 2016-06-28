@@ -1,23 +1,40 @@
-import os
 from fabric.api import *
 from fabric.contrib.project import rsync_project
 from fabric.contrib.files import exists
-# import django
+from fabric.utils import abort
+from fabric import colors
 from datetime import datetime
 import yaml
 
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "microsite.settings")
-# django.setup()
 
-full_path = os.path.realpath(__file__).split('fabfile.py')[0] + 'config.yaml'
-config = yaml.load(open(full_path))
+config = {}
 data = config.get("local") or {}
 run_on = "local"
 env.hosts = ['localhost']
 backup_local_file = ''
-if data and data.get("project_root"):
-    backup_local_file = data.get("project_root") + \
-        '/server_db_backup_%s.sql' % str(datetime.now().date())
+
+
+def setup(config_file_path):
+    global config
+    global data
+    global backup_local_file
+
+    try:
+        config = yaml.load(open(config_file_path))
+    except IOError as e:
+        print(str(e))
+        abort(colors.red("No such file. Please add a configuration "
+                         "file same as sample_config.yaml\n"))
+    except Exception as e:
+        print(str(e))
+        abort(colors.red("Please check the configuration file. "
+                         "It should be a YAML file same as "
+                         "sample_config.yaml\n"))
+    else:
+        data = config.get("local") or {}
+        if data and data.get("project_root"):
+            backup_local_file = data.get("project_root") + \
+                '/server_db_backup_%s.sql' % str(datetime.now().date())
 
 
 def run_local():
