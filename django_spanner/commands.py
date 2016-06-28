@@ -25,13 +25,15 @@ def setup(config_file_path):
     except IOError as e:
         print(str(e))
         abort(colors.red("No such file. Please add a configuration "
-                         "file same as sample_config.yaml\n"))
+                         "file similar to sample_config.yaml\n"))
     except Exception as e:
         print(str(e))
         abort(colors.red("Please check the configuration file. "
-                         "It should be a YAML file same as "
+                         "It should be a YAML file similar to "
                          "sample_config.yaml\n"))
     else:
+        if config is None:
+            config = {}
         data = config.get("local") or {}
         if data and data.get("project_root"):
             backup_local_file = data.get("project_root") + \
@@ -72,7 +74,7 @@ def run_live():
 def get_function():
     if not config:
         abort(colors.red("Please check the configuration file. "
-                         "It should be a YAML file same as "
+                         "It should be a YAML file similar to "
                          "sample_config.yaml\n"))
 
     if run_on == "local":
