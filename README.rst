@@ -1,24 +1,23 @@
 Deploy Django Project with Fabric
-
+===================================
 
 Setup:
 -------
 
+* First, create an YAML file similar to `sample_config.yaml`_ and fill the configuration details.
 
-First, create an YAML file similar to `sample_config.yaml`_ and fill the configuration details.
+.. _`sample_config.yaml`: http://git.micropyramid.com/mp/django-spanner/blob/master/sample_config.yaml
 
-.. _`sample_config.yaml`: http://git.micropyramid.com/mp/django-spanner/blob/master/config.yaml
+* Next, create a :code:`fabfile.py` in your project directory and import all functions(fab commands/tasks) from `django_spanner`.
 
-Next, create a :code:`fabfile.py` in your project directory and import all functions(fab commands/tasks) from `django_spanner`.
+* Finally, call setup() function with your configuration yaml file path.
 
-Finally, call setup() function with your configuration yaml file path.
-
-Here is an example fabfile -
+**Here is an example fabfile** -
 
 .. code-block:: python
 
+    # fabfile.py
     from django_spanner.commands import *
-
     setup("fabconfig.yaml")
 
 
@@ -37,19 +36,17 @@ Usage:
 .. code-block:: python
 
     fab run_local activate_env_install_requirements
-
                     (or)
-
     fab activate_env_install_requirements
-
-
-.. note:: By default, all the functions will run on the local system.
 
 
 * To run a command on staging/live host,
 
 .. code-block:: python
-
     fab [run_local/run_stage/run_live] <command_name>
 
+
+NOTE:
+-------
+By default, all the functions will run on the local system.
 
