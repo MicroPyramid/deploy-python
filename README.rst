@@ -43,6 +43,7 @@ Usage:
 * To run a command on staging/live host,
 
 .. code-block:: python
+
     fab [run_local/run_stage/run_live] <command_name>
 
 
