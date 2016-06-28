@@ -1,25 +1,46 @@
-import os
 from fabric.api import *
 from fabric.contrib.project import rsync_project
 from fabric.contrib.files import exists
-# import django
+from fabric.utils import abort
+from fabric import colors
 from datetime import datetime
 import yaml
 
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "microsite.settings")
-# django.setup()
 
-full_path = os.path.realpath(__file__).split('fabfile.py')[0] + 'config.yaml'
-config = yaml.load(open(full_path))
+config = {}
 data = config.get("local") or {}
 run_on = "local"
 env.hosts = ['localhost']
 backup_local_file = ''
-if data and data.get("project_root"):
-    backup_local_file = data.get("project_root") + \
-        '/server_db_backup_%s.sql' % str(datetime.now().date())
 
 
+@task
+def setup(config_file_path):
+    global config
+    global data
+    global backup_local_file
+
+    try:
+        config = yaml.load(open(config_file_path))
+    except IOError as e:
+        print(str(e))
+        abort(colors.red("No such file. Please add a configuration "
+                         "file similar to sample_config.yaml\n"))
+    except Exception as e:
+        print(str(e))
+        abort(colors.red("Please check the configuration file. "
+                         "It should be a YAML file similar to "
+                         "sample_config.yaml\n"))
+    else:
+        if config is None:
+            config = {}
+        data = config.get("local") or {}
+        if data and data.get("project_root"):
+            backup_local_file = data.get("project_root") + \
+                '/server_db_backup_%s.sql' % str(datetime.now().date())
+
+
+@task
 def run_local():
     global run_on
     global data
@@ -28,6 +49,7 @@ def run_local():
     data = config.get("local") or {}
 
 
+@task
 def run_stage():
     global run_on
     global data
@@ -38,6 +60,7 @@ def run_stage():
         env.hosts = list(config.get("stage").get("servers"))
 
 
+@task
 def run_live():
     global run_on
     global data
@@ -49,6 +72,11 @@ def run_live():
 
 
 def get_function():
+    if not config:
+        abort(colors.red("Please check the configuration file. "
+                         "It should be a YAML file similar to "
+                         "sample_config.yaml\n"))
+
     if run_on == "local":
         return local
     else:
@@ -59,6 +87,7 @@ def get_function():
         return run
 
 
+@task
 def activate_env_install_requirements():
     function = get_function()
     if not function:
@@ -93,18 +122,22 @@ def manage_py(command):
               "in the config file." % str(run_on))
 
 
+@task
 def migrate():
     manage_py("migrate")
 
 
+@task
 def collect_static():
     manage_py("collectstatic")
 
 
+@task
 def rebuild_index():
     manage_py('rebuild_index --noinput')
 
 
+@task
 def restart_celery():
     function = get_function()
     if not function:
@@ -113,12 +146,14 @@ def restart_celery():
     function('supervisorctl restart celeryd')
 
 
+@task
 def deploy():
     activate_env_install_requirements()
     migrate()
     # collect_static()
 
 
+@task
 def rsync_with_settings():
     if (
         config.get("local") and config.get("local").get("repository_root") and
@@ -135,6 +170,7 @@ def rsync_with_settings():
               "in the config file." % str(run_on))
 
 
+@task
 def rsync_without_settings():
     if (
         config.get("local") and config.get("local").get("repository_root") and
@@ -152,6 +188,7 @@ def rsync_without_settings():
 
 
 # Deploy project to remote host
+@task
 def deploy_to_server(sync_with_setting="False", debug="False"):
     function = get_function()
     if not function:
@@ -260,6 +297,7 @@ def do_database_checks():
     return function
 
 
+@task
 def take_database_backup():
     function = do_database_checks()
     if not function:
@@ -284,6 +322,7 @@ def take_database_backup():
         function('rm %s' % backup_server_file)
 
 
+@task
 def restore_to_local():
     function = do_database_checks()
     if not function:
@@ -299,6 +338,7 @@ def restore_to_local():
         pass
 
 
+@task
 def restore_to_server():
     function = do_database_checks()
     if not function:
@@ -317,6 +357,7 @@ def restore_to_server():
         pass
 
 
+@task
 def reset_local_db():
     function = do_database_checks()
     if not function:
@@ -348,6 +389,7 @@ def reset_local_db():
         pass
 
 
+@task
 def reset_server_db():
     function = do_database_checks()
     if not function:
@@ -379,6 +421,7 @@ def reset_server_db():
         pass
 
 
+@task
 def restart_supervisior():
     function = get_function()
     if not function:
@@ -387,6 +430,7 @@ def restart_supervisior():
     function('supervisorctl reload')
 
 
+@task
 def restart_server():
     function = get_function()
     if not function:
@@ -395,6 +439,7 @@ def restart_server():
     function('sudo reboot')
 
 
+@task
 def restart_uwsgi():
     function = get_function()
     if not function:
