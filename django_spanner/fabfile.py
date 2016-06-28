@@ -66,6 +66,11 @@ def run_live():
 
 
 def get_function():
+    if not config:
+        abort(colors.red("Please check the configuration file. "
+                         "It should be a YAML file same as "
+                         "sample_config.yaml\n"))
+
     if run_on == "local":
         return local
     else:
