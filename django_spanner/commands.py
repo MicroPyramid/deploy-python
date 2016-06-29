@@ -446,3 +446,175 @@ def restart_uwsgi():
         return
 
     function('sudo service uwsgi restart')
+
+
+def start():
+    import curses
+
+    def highlight_printer(x, y, text, position):
+        screen.addstr(x, y, text[0:position])
+        screen.addstr(x, y + position, text[position], curses.color_pair(1))
+        screen.addstr(x, y + position + 1, text[position + 1:])
+
+    def highlight_line(x, y, text):
+        screen.addstr(x, y, text, curses.color_pair(2))
+
+    def perform_action(x, y, action):
+        echo = screen.getch(x, y)
+        while echo not in [ord('y'), ord('Y'), ord('n'), ord('N')]:
+            echo = screen.getch(x, y)
+        else:
+            if echo == ord('y') or echo == ord('Y'):
+                curses.endwin()
+                action()
+            screen.clear()
+            start()
+
+    screen = curses.initscr()
+
+    if curses.has_colors():
+        curses.start_color()
+    curses.init_pair(1, curses.COLOR_RED, curses.COLOR_WHITE)
+    curses.init_pair(2, curses.COLOR_RED, curses.COLOR_GREEN)
+
+    screen.addstr(5, 35,      "+----------------------------+")
+    screen.addstr(6, 35,      "|   Management Options       |")
+    screen.addstr(7, 35,      "+----------------------------+")
+    highlight_printer(8, 35,  "| Deploy To Server           |", 2)
+    highlight_printer(9, 35,  "| Push Local DB to Server    |", 2)
+    highlight_printer(10, 35, "| Backup Server DB           |", 2)
+    highlight_printer(11, 35, "| Restore Server DB to Local |", 3)
+    highlight_printer(12, 35, "| Update Server env          |", 9)
+    highlight_printer(13, 35, "| Update Local env           |", 9)
+    highlight_printer(14, 35, "| Restart Server             |", 2)
+    highlight_printer(15, 35, "| Restart uWSGI              |", 10)
+    highlight_printer(16, 35, "| Collect Static             |", 3)
+    highlight_printer(17, 35, "| Rebuild Search Index       |", 17)
+    highlight_printer(18, 35, "| Restart Celery             |", 10)
+    highlight_printer(19, 35, "| Reset Local DB             |", 6)
+    highlight_printer(20, 35, "| Reset Server DB            |", 11)
+    highlight_printer(21, 35, "| Restart Supervisorctl      |", 6)
+    highlight_printer(22, 35, "| Apply Migrations           |", 8)
+    highlight_printer(23, 35, "| Quit                       |", 2)
+    screen.addstr(24, 35,     "+----------------------------+")
+
+    screen.refresh()
+    curses.noecho()
+    while 1:
+        c = screen.getch()
+        if c == ord('d') or c == ord('D'):
+            highlight_line(8, 36, " Deploy To Server           ")
+            screen.addstr(26, 35, "Are you sure? You want to deploy the code?(Y/N):")
+            perform_action(26, 83, deploy_to_server)
+            break
+        elif c == ord('p') or c == ord('P'):
+            highlight_line(9, 36, " Push Local DB to Server    ")
+            screen.addstr(26, 35, "Are you sure? You want to Push Local DB to Server?(Y/N):")
+            echo = screen.getch(26, 92)
+            while echo not in [ord('y'), ord('Y'), ord('n'), ord('N')]:
+                echo = screen.getch(26, 92)
+            else:
+                if echo == ord('y') or echo == ord('Y'):
+                    curses.endwin()
+                    take_local_backup()
+                    restore_to_server()
+                screen.clear()
+                start()
+            break
+        elif c == ord('b') or c == ord('B'):
+            highlight_line(10, 36, " Backup Server DB           ")
+            screen.addstr(26, 35, "Are you sure? You want to Get the server DB backup file?(Y/N):")
+            perform_action(26, 98, take_server_backup)
+            break
+        elif c == ord('e') or c == ord('e'):
+            highlight_line(11, 36, " Restore Server DB to Local ")
+            screen.addstr(26, 35, "Are you sure? You want to Get the server DB to Local?(Y/N):")
+            echo = screen.getch(26, 95)
+            while echo not in [ord('y'), ord('Y'), ord('n'), ord('N')]:
+                echo = screen.getch(26, 95)
+            else:
+                if echo == ord('y') or echo == ord('Y'):
+                    curses.endwin()
+                    take_server_backup()
+                    restore_to_local()
+                screen.clear()
+                start()
+            break
+        elif c == ord('s') or c == ord('S'):
+            highlight_line(12, 36, " Update Server env          ")
+            screen.addstr(26, 35, "Are you sure? You want to update server env?(Y/N):")
+            perform_action(26, 86, activate_env_install_requirements)
+            break
+        elif c == ord('l') or c == ord('L'):
+            highlight_line(13, 36, " Update Local env           ")
+            screen.addstr(26, 35, "Are you sure? You want to update local env?(Y/N):")
+            perform_action(26, 85, activate_env_install_requirements)
+            break
+        elif c == ord('r') or c == ord('R'):
+            highlight_line(14, 36, " Restart Server             ")
+            screen.addstr(26, 35, "Are you sure? You want to restart the server?(Y/N):")
+            perform_action(26, 87, restart_server)
+            break
+        elif c == ord('u') or c == ord('U'):
+            highlight_line(15, 36, " Restart uWSGI              ")
+            screen.addstr(26, 35, "Are you sure? You want to restart the server?(Y/N):")
+            perform_action(26, 87, restart_uwsgi)
+            break
+        elif c == ord('o') or c == ord('O'):
+            highlight_line(16, 36, " Collect Static             ")
+            screen.addstr(26, 35, "Are you sure? You want to run collect static?(Y/N):")
+            perform_action(26, 87, collect_static)
+            break
+        elif c == ord('i') or c == ord('I'):
+            highlight_line(17, 36, " Rebuild Search Index       ")
+            screen.addstr(26, 35, "Are you sure? You want to rebuild search index?(Y/N):")
+            perform_action(26, 89, rebuild_index)
+            break
+        elif c == ord('c') or c == ord('c'):
+            highlight_line(18, 36, " Restart Celery             ")
+            screen.addstr(26, 35, "Are you sure? You want to restart celery?(Y/N):")
+            perform_action(26, 83, restart_celery)
+            break
+        elif c == ord('t') or c == ord('T'):
+            highlight_line(19, 36, " Reset Local DB             ")
+            screen.addstr(26, 35, "Are you sure? You want to reset local db?(Y/N):")
+            perform_action(26, 83, reset_local_db)
+            break
+        elif c == ord('v') or c == ord('V'):
+            highlight_line(20, 36, " Reset Server DB             ")
+            screen.addstr(26, 35, "Are you sure? You want to reset server db?(Y/N):")
+            perform_action(26, 84, reset_server_db)
+            break
+        elif c == ord('a') or c == ord('A'):
+            highlight_line(21, 36, " Restart Supervisorctl      ")
+            screen.addstr(26, 35, "Are you sure? You want to restart supervisorctl?(Y/N):")
+            perform_action(26, 85, restart_supervisior)
+            break
+        elif c == ord('m') or c == ord('M'):
+            highlight_line(22, 36, " Apply Migrations           ")
+            screen.addstr(26, 35, "Are you sure? You want to apply migrations?(Y/N):")
+            perform_action(26, 85, migrate)
+            break
+        elif c == ord('q') or c == ord('Q'):
+            break  # Exit the while()
+
+    # screen.getch()
+    curses.endwin()
+
+
+@task
+def start_live():
+    run_live()
+    start()
+
+
+@task
+def start_local():
+    run_local()
+    start()
+
+
+@task
+def start_stage():
+    run_stage()
+    start()
