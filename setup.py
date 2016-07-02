@@ -22,7 +22,7 @@ for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
 
 setup(
     name='django-spanner',
-    version='0.0.1',
+    version='0.0.2',
     packages=['django_spanner'],
     include_package_data=True,
     description='A Django deployment package for all hosting types.',
@@ -45,6 +45,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=[
-        "django",
+        "Fabric",
     ],
 )
