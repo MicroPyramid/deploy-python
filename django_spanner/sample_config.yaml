@@ -1,0 +1,72 @@
+local:
+    project_name: ""
+    # Ex: <project_name> - "django"
+
+    project_root: ""
+    # Ex: <path_to_your_project_directory> - "/home/Workspace/Projects/Django"
+
+    env_path: ""
+    # Ex: <env_path> - "/home/Workspace/Projects/Django/env"
+
+    repository_root: ""
+    # Ex: <path_to_your_project> - "/home/Workspace/Projects/Django/django"
+
+    requirements_file: ""
+    # Ex: <requirements_file_path> - "/home/Workspace/Projects/Django/django/requirements.txt"
+
+    db_name: ""
+
+    db_username: ""
+
+    database: ""
+    # Options: mysql/postgres
+
+live:
+    servers: []
+    # Ex: ['username@hostname:port']
+
+    project_name: ""
+
+    project_root: ""
+
+    env_path: ""
+
+    repository_root: ""
+
+    requirements_file: ""
+
+    uwsgi_file_path: ""
+    # Ex: "/home/Workspace/Projects/Django/"
+
+    uwsgi_file: ""
+    # Ex: "django_uwsgi.ini"
+
+    db_name: ""
+
+    db_username: ""
+
+    database: ""
+
+stage:
+    servers: []
+
+    project_name: ""
+
+    project_root: ""
+
+    env_path: ""
+
+    repository_root: ""
+
+    requirements_file: ""
+
+    uwsgi_file_path: ""
+
+    uwsgi_file: ""
+
+    db_name: ""
+
+    db_username: ""
+
+    database: ""
+
