@@ -5,12 +5,12 @@ Deploy Django Project with Fabric
    :target: http://django-spanner.readthedocs.org/en/latest/?badge=latest
 
  .. image:: https://img.shields.io/pypi/dm/django-spanner.svg
-    :target: https://pypi.python.org/pypi/django-spanner
-    :alt: Downloads
+   :target: https://pypi.python.org/pypi/django-spanner
+   :alt: Downloads
 
 .. image:: https://img.shields.io/pypi/v/django-spanner.svg
-    :target: https://pypi.python.org/pypi/django-spanner
-    :alt: Latest Release
+   :target: https://pypi.python.org/pypi/django-spanner
+   :alt: Latest Release
 
 .. image:: https://travis-ci.org/MicroPyramid/django-spanner.svg?branch=master
    :target: https://travis-ci.org/MicroPyramid/django-spanner
@@ -19,7 +19,7 @@ Deploy Django Project with Fabric
    :target: https://coveralls.io/github/MicroPyramid/django-spanner?branch=master
 
 .. image:: https://img.shields.io/pypi/l/django-spanner.svg
-    :target: https://pypi.python.org/pypi/django-spanner/
+   :target: https://pypi.python.org/pypi/django-spanner/
 
 
 Setup:
