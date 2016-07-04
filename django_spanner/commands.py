@@ -61,7 +61,7 @@ def run_stage():
     if config.get("stage") and config.get("stage").get("servers"):
         env.hosts = list(config.get("stage").get("servers"))
         backup_server_file = data.get("project_root") + \
-            '/server_db_backup_%s.sql' % str(datetime.datetime.now().date())
+            '/server_db_backup_%s.sql' % str(datetime.now().date())
 
 
 @task
@@ -74,7 +74,7 @@ def run_live():
     if config.get("live") and config.get("live").get("servers"):
         env.hosts = list(config.get("live").get("servers"))
         backup_server_file = data.get("project_root") + \
-            '/server_db_backup_%s.sql' % str(datetime.datetime.now().date())
+            '/server_db_backup_%s.sql' % str(datetime.now().date())
 
 
 def get_function():
