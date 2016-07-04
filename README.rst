@@ -1,12 +1,33 @@
 Deploy Django Project with Fabric
 ===================================
 
+.. image:: https://readthedocs.org/projects/django-spanner/badge/?version=latest
+   :target: http://django-spanner.readthedocs.org/en/latest/?badge=latest
+
+ .. image:: https://img.shields.io/pypi/dm/django-spanner.svg
+   :target: https://pypi.python.org/pypi/django-spanner
+   :alt: Downloads
+
+.. image:: https://img.shields.io/pypi/v/django-spanner.svg
+   :target: https://pypi.python.org/pypi/django-spanner
+   :alt: Latest Release
+
+.. image:: https://travis-ci.org/MicroPyramid/django-spanner.svg?branch=master
+   :target: https://travis-ci.org/MicroPyramid/django-spanner
+
+.. image:: https://coveralls.io/repos/github/MicroPyramid/django-spanner/badge.svg?branch=master
+   :target: https://coveralls.io/github/MicroPyramid/django-spanner?branch=master
+
+.. image:: https://img.shields.io/pypi/l/django-spanner.svg
+   :target: https://pypi.python.org/pypi/django-spanner/
+
+
 Setup:
 -------
 
 * First, create an YAML file similar to `sample_config.yaml`_ and fill the configuration details.
 
-.. _`sample_config.yaml`: http://git.micropyramid.com/mp/django-spanner/blob/master/django_spanner/sample_config.yaml
+.. _`sample_config.yaml`: https://github.com/MicroPyramid/django-spanner/blob/master/django_spanner/sample_config.yaml
 
 * Next, create a :code:`fabfile.py` in your project directory and import all functions(fab commands/tasks) from `django_spanner`.
 
@@ -50,4 +71,3 @@ Usage:
 NOTE:
 -------
 By default, all the functions will run on the local system.
-
