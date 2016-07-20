@@ -18,7 +18,7 @@ Deploy Django Project with Fabric
 .. image:: https://coveralls.io/repos/github/MicroPyramid/django-spanner/badge.svg?branch=master
    :target: https://coveralls.io/github/MicroPyramid/django-spanner?branch=master
 
-.. image:: https://img.shields.io/pypi/l/django-spanner.svg
+.. image:: https://img.shields.io/github/license/micropyramid/django-spanner.svg
    :target: https://pypi.python.org/pypi/django-spanner/
 
 
