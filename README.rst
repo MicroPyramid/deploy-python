@@ -2,9 +2,10 @@ Deploy Django Project with Fabric
 ===================================
 
 .. image:: https://readthedocs.org/projects/django-spanner/badge/?version=latest
-   :target: http://django-spanner.readthedocs.org/en/latest/?badge=latest
+   :target: http://django-spanner.readthedocs.io/en/latest/
+   :alt: Documentation Status
 
- .. image:: https://img.shields.io/pypi/dm/django-spanner.svg
+.. image:: https://img.shields.io/pypi/dm/django-spanner.svg
    :target: https://pypi.python.org/pypi/django-spanner
    :alt: Downloads
 
