@@ -72,3 +72,7 @@ Usage:
 NOTE:
 -------
 By default, all the functions will run on the local system.
+
+Visit our Django web development page `Here`_
+
+.. _Here: https://micropyramid.com/django-development-services/
