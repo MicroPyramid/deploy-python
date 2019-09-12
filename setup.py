@@ -22,7 +22,7 @@ for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
 
 setup(
     name='deploy-python',
-    version='1.0',
+    version='1.1',
     packages=['deploy_python'],
     include_package_data=True,
     description='A Django deployment package for all hosting types.',
