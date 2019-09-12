@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# django_spanner documentation build configuration file, created by
+# deploy_python documentation build configuration file, created by
 # sphinx-quickstart on Sat Jul  2 11:42:15 2016.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django_spanner'
+project = u'deploy_python'
 copyright = u'2016, micropyramid'
 author = u'micropyramid'
 
@@ -133,7 +133,7 @@ html_theme = 'sphinx_rtd_theme'
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = u'django_spanner v0.0.2'
+# html_title = u'deploy_python v0.0.2'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -233,7 +233,7 @@ html_static_path = ['_static']
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'django_spannerdoc'
+htmlhelp_basename = 'deploy_pythondoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -259,7 +259,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'django_spanner.tex', u'django\\_spanner Documentation',
+    (master_doc, 'deploy_python.tex', u'django\\_spanner Documentation',
      u'micropyramid', 'manual'),
 ]
 
@@ -295,7 +295,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'django_spanner', u'django_spanner Documentation',
+    (master_doc, 'deploy_python', u'deploy_python Documentation',
      [author], 1)
 ]
 
@@ -310,8 +310,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'django_spanner', u'django_spanner Documentation',
-     author, 'django_spanner', 'One line description of project.',
+    (master_doc, 'deploy_python', u'deploy_python Documentation',
+     author, 'deploy_python', 'One line description of project.',
      'Miscellaneous'),
 ]
 

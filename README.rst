@@ -1,26 +1,26 @@
 Deploy Django Project with Fabric
 ===================================
 
-.. image:: https://readthedocs.org/projects/django-spanner/badge/?version=latest
-   :target: http://django-spanner.readthedocs.io/en/latest/
+.. image:: https://readthedocs.org/projects/deploy-python/badge/?version=latest
+   :target: http://deploy-python.readthedocs.io/en/latest/
    :alt: Documentation Status
 
-.. image:: https://img.shields.io/pypi/dm/django-spanner.svg
-   :target: https://pypi.python.org/pypi/django-spanner
+.. image:: https://img.shields.io/pypi/dm/deploy-python.svg
+   :target: https://pypi.python.org/pypi/deploy-python
    :alt: Downloads
 
-.. image:: https://img.shields.io/pypi/v/django-spanner.svg
-   :target: https://pypi.python.org/pypi/django-spanner
+.. image:: https://img.shields.io/pypi/v/deploy-python.svg
+   :target: https://pypi.python.org/pypi/deploy-python
    :alt: Latest Release
 
-.. image:: https://travis-ci.org/MicroPyramid/django-spanner.svg?branch=master
-   :target: https://travis-ci.org/MicroPyramid/django-spanner
+.. image:: https://travis-ci.org/MicroPyramid/deploy-python.svg?branch=master
+   :target: https://travis-ci.org/MicroPyramid/deploy-python
 
-.. image:: https://coveralls.io/repos/github/MicroPyramid/django-spanner/badge.svg?branch=master
-   :target: https://coveralls.io/github/MicroPyramid/django-spanner?branch=master
+.. image:: https://coveralls.io/repos/github/MicroPyramid/deploy-python/badge.svg?branch=master
+   :target: https://coveralls.io/github/MicroPyramid/deploy-python?branch=master
 
-.. image:: https://img.shields.io/github/license/micropyramid/django-spanner.svg
-   :target: https://pypi.python.org/pypi/django-spanner/
+.. image:: https://img.shields.io/github/license/micropyramid/deploy-python.svg
+   :target: https://pypi.python.org/pypi/deploy-python/
 
 
 Setup:
@@ -28,9 +28,9 @@ Setup:
 
 * First, create an YAML file similar to `sample_config.yaml`_ and fill the configuration details.
 
-.. _`sample_config.yaml`: https://github.com/MicroPyramid/django-spanner/blob/master/django_spanner/sample_config.yaml
+.. _`sample_config.yaml`: https://github.com/MicroPyramid/deploy-python/blob/master/deploy_python/sample_config.yaml
 
-* Next, create a :code:`fabfile.py` in your project directory and import all functions(fab commands/tasks) from `django_spanner`.
+* Next, create a :code:`fabfile.py` in your project directory and import all functions(fab commands/tasks) from `deploy_python`.
 
 * Finally, call setup() function with your configuration yaml file path.
 
@@ -39,7 +39,7 @@ Setup:
 .. code-block:: python
 
     # fabfile.py
-    from django_spanner.commands import *
+    from deploy_python.commands import *
     setup("fabconfig.yaml")
 
 

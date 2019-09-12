@@ -1,4 +1,4 @@
-.. django_spanner documentation master file, created by
+.. deploy_python documentation master file, created by
    sphinx-quickstart on Sat Jul  2 11:42:15 2016.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -16,13 +16,13 @@ Django Spanner is a simple package used to deploy and manage `Django`_ applicati
 * Also used to manage local django project to install requirements, run make migrations, migrate, take database backups and many more...
 
 
-This package is developed by `MicroPyramid`_ team. Please refer the `github repository`_ for the django-spanner source code. It's free and open source.
+This package is developed by `MicroPyramid`_ team. Please refer the `github repository`_ for the deploy-python source code. It's free and open source.
 
 
 Github Repository
 ********************
 
-    Django Spanner - `https://github.com/MicroPyramid/django-spanner`_
+    Django Spanner - `https://github.com/MicroPyramid/deploy-python`_
 
 
 Contents
@@ -43,9 +43,9 @@ Contents
 
 .. _`MicroPyramid`: https://micropyramid.com/
 
-.. _`github repository`: https://github.com/MicroPyramid/django-spanner
+.. _`github repository`: https://github.com/MicroPyramid/deploy-python
 
-.. _`https://github.com/MicroPyramid/django-spanner`: https://github.com/MicroPyramid/django-spanner
+.. _`https://github.com/MicroPyramid/deploy-python`: https://github.com/MicroPyramid/deploy-python
 
-.. _`sample config file`: https://github.com/MicroPyramid/django-spanner/blob/master/django_spanner/sample_config.yaml
+.. _`sample config file`: https://github.com/MicroPyramid/deploy-python/blob/master/deploy_python/sample_config.yaml
 

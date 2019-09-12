@@ -6,7 +6,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
-PROJECT_NAME = 'django-spanner'
+PROJECT_NAME = 'deploy-python'
 
 data_files = []
 for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
@@ -21,13 +21,13 @@ for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
                 dirpath[len(PROJECT_NAME) + 1:], f))
 
 setup(
-    name='django-spanner',
-    version='0.0.3',
-    packages=['django_spanner'],
+    name='deploy-python',
+    version='1.0',
+    packages=['deploy_python'],
     include_package_data=True,
     description='A Django deployment package for all hosting types.',
     long_description=README,
-    url='https://github.com/MicroPyramid/django-spanner',
+    url='https://github.com/MicroPyramid/deploy-python',
     author='Micropyramid',
     author_email='hello@micropyramid.com',
     classifiers=[
